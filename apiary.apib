@@ -5,9 +5,17 @@ HOST: https://example.aibnb.com/
 
 All backend related rest API sits here.
 
-## Search By Country [/search/country={?country},latitude={?latitude},longitude={?longitude},zipcode={?zipcode},page={page},page_count={page_count}]
+## Search By Country [/search?country={?country}&latitude={?latitude}&longitude={?longitude}&zipcode={?zipcode}&page={page}&page_count={page_count}]
++ Parameters
+    + country (string) - Search parameter for the country
+    + latitude (number) - Latitude of a place
+    + longitude (number) - Longitude of a place
+    + zipcode (number) - Zipcode of a place
+    + page (number, required) - Send a page number to view the data
+    + page_count (number) - Get data from a page. Default is 30.
 
 ### Get data from each country [GET]
+
 
 ### Assumptions: 
 1. Assume that price is always dollars
