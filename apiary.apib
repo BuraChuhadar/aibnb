@@ -1,80 +1,126 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: https://example.aibnb.com/
 
-# Bura Chuhadar
+# Aibnb
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+All backend related rest API sits here.
 
-## Questions Collection [/questions]
+## Search By Country [/search/country={?country},latitude={?latitude},longitude={?longitude},zipcode={?zipcode},page={page},page_count={page_count}]
 
-### List All Questions [GET]
+### Get data from each country [GET]
+
+### Assumptions: 
+1. Assume that price is always dollars
+2. The endpoint should accept any of country,latitude,longitude or zipcode parameters
 
 + Response 200 (application/json)
 
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
-
-### Create a New Question [POST]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
-
-+ Request (application/json)
-
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
+            "data": [
+                {
+                    "listing_id": "2818",
+                    "name": "Quiet Garden View Room & Super Fast WiFi",
+                    "summary": "Quiet Garden View Room & Super Fast WiFi",
+                    "price": "69.00", 
+                    "reviews_per_month": 2.1,
+                    "has_availability": "true",
+                    "availability_30": 17,
+                    "availability_60": 43,
+                    "availability_90": 57,
+                    "availability_365": 90
+                    "number_of_reviews": 243,
+                    
+                },
+                {
+                    "listing_id": "2830",
+                    "name": "Quiet Garden View Room & Super Fast WiFi",
+                    "summary": "Quiet Garden View Room & Super Fast WiFi",
+                    "price": "69.00", 
+                    "reviews_per_month": 2.1,
+                    "has_availability": "true",
+                    "availability_30": 17,
+                    "availability_60": 43,
+                    "availability_90": 57,
+                    "availability_365": 90
+                    "number_of_reviews": 243,
+                    
+                }
+            ],
+            "page_count": 30,
+            "total_count": 1000,
+            "page": 1
         }
+        
+## Search By Listing Id [/search/listingId={listingId}]
 
-+ Response 201 (application/json)
+### Get data from each listing id [GET]
 
-    + Headers
+### Assumptions: 
+1. Assume that price is always dollars
 
-            Location: /questions/2
++ Response 200 (application/json)
 
-    + Body
-
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
-            }
+                {
+                    "listing_id": "2818",
+                    "name": "Quiet Garden View Room & Super Fast WiFi",
+                    "summary": "Quiet Garden View Room & Super Fast WiFi",
+                    "picture_url": "https://a0.muscache.com/im/pictures/10272854/8dcca016_original.jpg?aki_policy=large",
+                    "street": "Amsterdam, North Holland, Netherlands",
+                    "neighbourhood": "Indische Buurt",
+                    "city": "Amsterdam",
+                    "state":"North Holland",
+                    "zipcode": "1059",
+                    "country_code": "NL",
+                    "country": "Netherlands",
+                    "latitude": 52.39022505,
+                    "longitude": 4.941419235,
+                    "property_type": "Apartment",
+                    "room_type": "Private room",
+                    "accommodates": 2,
+                    "bathrooms": 1.5,
+                    "bedrooms": 1,
+                    "beds": 2,
+                    "amenities": [
+                        "Internet,Wifi",
+                        "Paid parking off premises",
+                        "Buzzer/wireless intercom",
+                        "Heating,Washer",
+                        "Smoke detector",
+                        "Carbon monoxide detector",
+                        "First aid kit",
+                        "Safety card",
+                        "Fire extinguisher",
+                        "Essentials,Shampoo",
+                        "Lock on bedroom door",
+                        "24-hour check-in",
+                        "Hangers",
+                        "Hair dryer",
+                        "Iron",
+                        "Laptop friendly workspace",
+                        "translation missing: en.hosting_amenity_49",
+                        "translation missing: en.hosting_amenity_50",
+                        "Private entrance",
+                        "Hot water",
+                        "Bed linens",
+                        "Extra pillows and blankets",
+                        "Single level home",
+                        "Garden or backyard",
+                        "Step-free access",
+                        "Flat path to front door",
+                        "Well-lit path to entrance",
+                        "Step-free access",
+                        "Accessible-height bed",
+                        "Step-free access",
+                        "Host greets you",
+                        "Handheld shower head"
+                        ],
+                    "price": "69.00", 
+                    "reviews_per_month": 2.1,
+                    "has_availability": "true",
+                    "availability_30": 17,
+                    "availability_60": 43,
+                    "availability_90": 57,
+                    "availability_365": 90
+                    "number_of_reviews": 243,
+                    
+                }
